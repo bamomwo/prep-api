@@ -1,0 +1,34 @@
+[
+  {
+    "title": "Introductory Web Design",
+    "tags": ["javascript", "programming"],
+    "creator": "635278bd5208e99b63b8dd6c",
+    "contributors": ["635278bd5208e99b63b8dd6e", "635278bd5208e99b63b8dd6b"],
+    "prep": [
+      {
+        "question": "What is the meaning of HTML",
+        "options": {
+          "a": "Hyper Table Money Language",
+          "b": "High Telephone Marking Language",
+          "c": "High Telephone Marking Language",
+          "d": "Hyper Text Markup Languga",
+          "e": "High Telephone Marking Language"
+        },
+        "correctOption": "Hyper Text Markup Languga",
+        "details": "One of the basic languages you should know"
+      },
+      {
+        "question": "Which is not used for variable declaration in javascript",
+        "options": {
+          "a": "while",
+          "b": "var",
+          "c": "const",
+          "d": "let",
+          "e": "None of the above"
+        },
+        "correctOption": "while",
+        "details": "Keywords for variable declaration are, let, const ,var"
+      }
+    ]
+  }
+]

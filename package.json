@@ -1,0 +1,24 @@
+{
+  "name": "prep-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "SET NODE_ENV=production && node app",
+    "dev": "nodemon app",
+    "lint": "eslint ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "mongoose": "^6.6.1"
+  },
+  "devDependencies": {
+    "colors": "^1.4.0",
+    "eslint": "^8.24.0",
+    "nodemon": "^2.0.19"
+  }
+}

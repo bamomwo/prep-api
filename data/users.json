@@ -1,0 +1,38 @@
+[
+  {
+    "firstname": "John ",
+    "lastname": "Doe",
+    "gender": "male",
+    "email": "johndoe@gmail.com",
+    "role": "user",
+    "dob": "Feb 3 2012",
+    "password": "NobodyNever@knows900"
+  },
+  {
+    "firstname": "Mutum",
+    "lastname": "Peter",
+    "gender": "male",
+    "email": "peter@gmail.com",
+    "dob": "Dec 20 1992",
+    "password": "HeisaFucker100%"
+  },
+  {
+    "firstname": "Brilla",
+    "lastname": "bamomwo",
+    "gender": "male",
+    "email": "brilla@gmail.com",
+    "dob": "Jan 1 1996",
+    "password": "Helsinki!200"
+  },
+  {
+    "firstname": "sandra",
+    "lastname": "mura",
+    "gender": "female",
+    "email": "sandra@gmail.com",
+    "dob": "Mar 3 2000",
+    "password": "Helsinki!200"
+  }
+]
+
+
+
