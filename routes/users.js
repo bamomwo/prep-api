@@ -1,7 +1,6 @@
 const express = require('express')
 const router = express.Router()
 const {
-  createUser,
   getUsers,
   getUser,
   updateUser,
@@ -9,9 +8,14 @@ const {
 } = require('../controllers/users')
 const advancedResults = require('../middleware/advancedResults')
 const User = require('../model/User')
+const { protect } = require('../middleware/auth')
 
-router.route('/').post(createUser).get(advancedResults(User), getUsers)
+router.route('/').get(advancedResults(User), getUsers)
 
-router.route('/:id').get(getUser).put(updateUser).delete(deleteUser)
+router
+  .route('/:id')
+  .get(getUser)
+  .put(protect, updateUser)
+  .delete(protect, deleteUser)
 
 module.exports = router
