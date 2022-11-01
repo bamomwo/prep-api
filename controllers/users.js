@@ -39,7 +39,10 @@ exports.updateUser = asyncHandler(async (req, res, next) => {
   if (!user) {
     return res
       .status(400)
-      .json({ success: false, message: `Update unsuccessful` })
+      .json({
+        success: false,
+        message: `No user with id ${req.params.id} found`,
+      })
   }
   res.status(400).json({ success: true, data: user })
 })
@@ -54,7 +57,10 @@ exports.deleteUser = asyncHandler(async (req, res, next) => {
   if (!user) {
     return res
       .status(404)
-      .json({ success: false, message: 'Delete unsuccessful' })
+      .json({
+        success: false,
+        message: `No user with id ${req.params.id} found`,
+      })
   }
 
   res.status(400).json({ success: true, data: {} })

@@ -8,8 +8,19 @@ const {
   getPrep,
 } = require('../controllers/preps')
 
-router.route('/').get(getAllPreps).post(createPrep)
+const Prep = require('../model/Prep')
+const advancedResults = require('../middleware/advancedResults')
+const { protect, authorize } = require('../middleware/auth')
 
-router.route('/:id').put(updatePrep).delete(deletePrep).get(getPrep)
+router
+  .route('/')
+  .get(advancedResults(Prep), getAllPreps)
+  .post(protect, authorize('admin', 'creator'), createPrep)
+
+router
+  .route('/:id')
+  .put(protect, authorize('admin'), updatePrep)
+  .delete(protect, authorize('admin'), deletePrep)
+  .get(getPrep)
 
 module.exports = router

@@ -1,13 +1,13 @@
 const Prep = require('../model/Prep')
 const asyncHandler = require('../middleware/async')
 
-//@desc             Creates a Prep
+//@desc             Creates a Prep ---> Only Creators and admin can create preps
 //@Route            POST /api/v1/prep
 //@access           Private
 //eslint-disable-next-line no-unused-vars
 exports.createPrep = asyncHandler(async (req, res, next) => {
+  req.body.creator = req.user.id
   const prep = await Prep.create(req.body)
-
   res.json({ success: true, data: prep })
 })
 
@@ -44,7 +44,7 @@ exports.getPrep = asyncHandler(async (req, res, next) => {
   })
 })
 
-//@desc             Update a Prep
+//@desc             Update a Prep ---> Only Admins can update prebs
 //@Route            PUT  /api/v1/preps/:id
 //@access           Private
 //eslint-disable-next-line no-unused-vars
@@ -67,7 +67,7 @@ exports.updatePrep = asyncHandler(async (req, res, next) => {
   })
 })
 
-//@desc             Delete a Prep
+//@desc             Delete a Prep ---> Only Admins can delete prebs
 //@Route            DELETE /api/v1/preps/:id
 //@access           Private
 //eslint-disable-next-line no-unused-vars

@@ -8,14 +8,13 @@ const {
 } = require('../controllers/users')
 const advancedResults = require('../middleware/advancedResults')
 const User = require('../model/User')
-const { protect } = require('../middleware/auth')
+const { protect, authorize } = require('../middleware/auth')
+
+router.use(protect)
+router.use(authorize('admin'))
 
 router.route('/').get(advancedResults(User), getUsers)
 
-router
-  .route('/:id')
-  .get(getUser)
-  .put(protect, updateUser)
-  .delete(protect, deleteUser)
+router.route('/:id').get(getUser).put(updateUser).delete(deleteUser)
 
 module.exports = router

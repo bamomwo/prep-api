@@ -2,8 +2,6 @@
   {
     "title": "Introductory Web Design",
     "tags": ["javascript", "programming"],
-    "creator": "635278bd5208e99b63b8dd6c",
-    "contributors": ["635278bd5208e99b63b8dd6e", "635278bd5208e99b63b8dd6b"],
     "prep": [
       {
         "question": "What is the meaning of HTML",

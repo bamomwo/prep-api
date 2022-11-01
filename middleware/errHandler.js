@@ -2,10 +2,10 @@ const ErrorResponse = require('../utils/errorResponse')
 
 // eslint-disable-next-line no-unused-vars
 const errorHandler = (err, req, res, next) => {
-  console.log(err.name)
-
   let error = {}
   error.message = err.message
+
+  console.log(err.stack)
 
   // Incorrect Object Id Error handling
   if (err.name === 'CastError') {

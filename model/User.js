@@ -1,3 +1,4 @@
+const crypto = require('crypto')
 const mongoose = require('mongoose')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
@@ -48,7 +49,7 @@ const UserSchema = new mongoose.Schema({
 
   role: {
     type: 'string',
-    enum: ['user', 'admin'],
+    enum: ['user', 'creator'],
     default: 'user',
   },
 
@@ -70,6 +71,15 @@ const UserSchema = new mongoose.Schema({
     practiceTime: 'number',
   },
 
+  resetEmail: {
+    type: String,
+    unique: true,
+    match: [
+      /[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/,
+      'Please Enter a valid email',
+    ],
+  },
+
   resetPasswordToken: String,
   resetPasswordExpire: Date,
   createdAt: {
@@ -81,6 +91,9 @@ const UserSchema = new mongoose.Schema({
 // Middleware to encrypt password
 //eslint-disable-next-line no-unused-vars
 UserSchema.pre('save', async function (next) {
+  if (!this.isModified('password')) {
+    next()
+  }
   const salt = await bcrypt.genSalt(10)
   this.password = await bcrypt.hash(this.password, salt)
 })
@@ -96,6 +109,22 @@ UserSchema.methods.generateToken = async function () {
 
 UserSchema.methods.comparePassword = async function (enteredPassword) {
   return await bcrypt.compare(enteredPassword, this.password)
+}
+
+// Generate password reset token
+UserSchema.methods.generatePasswordResetToken = function () {
+  // Create reset token
+  const resetToken = crypto.randomBytes(20).toString('hex')
+
+  // Hash reset token
+  this.resetPasswordToken = crypto
+    .createHash('sha256')
+    .update(resetToken)
+    .digest('hex')
+
+  this.resetPasswordExpire = Date.now() + 10 * 60 * 1000
+
+  return resetToken
 }
 
 const User = mongoose.model('User', UserSchema)

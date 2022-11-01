@@ -24,10 +24,14 @@ exports.protect = asyncHandler(async (req, res, next) => {
 })
 
 // Access control middleware
-exports.authoroize = (...roles) => {
-  return (res, req, next) => {
+exports.authorize = (...roles) => {
+  return (req, res, next) => {
     if (!roles.includes(req.user.role)) {
-      return next(new ErrorResponse(`Unauthorized access to this route`))
+      return next(
+        new ErrorResponse(
+          `User role ${req.user.role} not authorize to access this route`
+        )
+      )
     }
     next()
   }

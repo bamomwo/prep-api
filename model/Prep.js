@@ -8,12 +8,17 @@ const PrepSchema = new mongoose.Schema({
     require: [true, 'Please provide a title'],
     unique: true,
   },
+  tags: {
+    type: [String],
+    maxLength: 12,
+  },
 
   creator: {
     type: mongoose.Schema.ObjectId,
     ref: 'User',
     require: true,
   },
+
   contributors: [{ type: mongoose.Schema.ObjectId, ref: 'User' }],
   prep: [
     {
